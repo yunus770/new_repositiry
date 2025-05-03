@@ -1,37 +1,35 @@
-import React, { useState } from "react";
-import { element, knopka } from "./components/UI";
-import Greeting from "./components/greeting";
-import Greting from "./components/greting";
-import Button from './components/handleClick'
-import './components/greeting';
+import React from "react";
+import { useState } from "react"
+import Chat from "./Chat"
+import Countries from "./Contries";
+import TodoApp from "./TodoApp";
+import ThemeToggle from "./Theme";
+import Counter from "./counter";
+import StringTrainer from "./experiment";
 function App() {
 
-  const handleClick = () => {
-    alert("Knopka basyldy!");
-  };
- const [likes, setLikes] = useState(5)
-
-  function kopelyan() {
-    setLikes(likes + 1)
-  }
-
-  function azalyan() {
-    setLikes(likes - 1)
-  }
-
+  const [page, setPage] = useState('counter');
   return (
     <div className="App">
-      <Greeting name='Yunus' />
-      <Greting name='Yunus' />
-      <h1>{likes} </h1>
-      <button onClick={kopelyan}>Kopeltmek</button>
-      <button onClick={azalyan}>Azaltmak</button>
-      <h2>{element}</h2>
-      <b>{knopka}</b>
-      <h1>
-      <Button text="Click Me" onClick={handleClick} />
-      <Button text="Cancel" onClick={() => console.log("Cancel clicked")} />
-    </h1>
+      <div style={{padding: 20}}>
+        <div>
+          <h1>React tools</h1>
+          <StringTrainer/>
+        </div>
+        <nav>
+          <button onClick={() => setPage("chat")}> Çat</button>
+          <button onClick={() => setPage("countries")}> Ýurtlar</button>
+          <button onClick={() => setPage("todo")}>Todo List</button>
+          <button onClick={() => setPage("theme")}>TEMA</button>
+          <button onClick={() => setPage('counter')}>Counter</button>
+
+        </nav>
+        {page === 'theme' && <ThemeToggle/>}
+        {page === 'chat' && <Chat />}
+        {page === 'countries' && <Countries />}
+        {page === 'todo' && <TodoApp/>}
+        {page === 'counter' && <Counter/>}
+      </div>
     </div>
   );
 }
